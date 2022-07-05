@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 
 import com.example.atm.R;
 
+import mehdi.sakout.aboutpage.AboutPage;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SobreFragment#newInstance} factory method to
@@ -60,7 +62,17 @@ public class SobreFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sobre, container, false);
+         return new AboutPage(getActivity())
+                 .setImage(R.drawable.logo)
+                 .addGroup("Entre em contato")
+                 .addEmail("atendimento@atmconsultoria.com.br", "Envie um e-mail")
+                 .addWebsite("https://github.com/marcosr","Acessew nosso site")
+
+                 .addGroup("Redes sociais")
+                 .addFacebook("teste", "Facebook")
+                 .addGitHub("marcosrib", "Github")
+                 .create();
+        //return inflater.inflate(R.layout.fragment_sobre, container, false);
+
     }
 }

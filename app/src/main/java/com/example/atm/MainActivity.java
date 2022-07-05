@@ -1,5 +1,7 @@
 package com.example.atm;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
@@ -15,6 +17,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.atm.databinding.ActivityMainBinding;
+
+import java.net.URI;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,8 +36,7 @@ public class MainActivity extends AppCompatActivity {
         binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+              enviarEmail();
             }
         });
         DrawerLayout drawer = binding.drawerLayout;
@@ -58,6 +61,18 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
+    }
+
+    public void enviarEmail() {
+        //Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:1199656565"));
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_EMAIL,  new String[] {"atendmento@atmconsultoria.com.br"});
+        intent.putExtra(Intent.EXTRA_SUBJECT,  "Contato pelo app");
+        intent.putExtra(Intent.EXTRA_SUBJECT,  "Mensagem automatica");
+
+        intent.setType("message/rfc882");
+
+        startActivity(Intent.createChooser(intent, "Compartilhar"));
     }
 
     @Override
